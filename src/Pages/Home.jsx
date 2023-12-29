@@ -1,8 +1,8 @@
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Button, ButtonGroup } from "semantic-ui-react";
 const Home = () => {
   return (
     <div>
-      <Button colorScheme="blue">Welcome</Button>
+      <Button>Welcome</Button>
     </div>
   );
 };

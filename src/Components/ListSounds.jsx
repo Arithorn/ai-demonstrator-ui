@@ -1,28 +1,32 @@
 import { Navigate } from "react-router-dom";
-import { useRecoilValue, atom } from "recoil";
+import { useRecoilValue } from "recoil";
+import { Header, Table } from "semantic-ui-react";
 
-const loginState = atom({
-  key: "loginState",
-  default: false,
-});
+import { loginState, jwtState } from "../State/state";
+import { PlayButton } from "./PlayButton";
 
-const jwtState = atom({
-  key: "jwtState",
-  default: "",
-});
-const ListSounds = () => {
+const ListSounds = (props) => {
   const token = useRecoilValue(jwtState);
   const login = useRecoilValue(loginState);
   if (login !== true) {
     return <Navigate replace to="/login" />;
   }
-
+  const listItems = props.items.map((sound) => <PlayButton sound={sound} />);
   return (
     <div>
-      <h1>
-        You are logged in with the following JWT Token :<br></br>
-        {token}
-      </h1>
+      <Table celled striped padded>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell singleLine>
+              <Header>Message</Header>
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              <Header>Play</Header>
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        {listItems}
+      </Table>
     </div>
   );
 };

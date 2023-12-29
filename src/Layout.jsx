@@ -1,23 +1,33 @@
 // import { Link } from "@chakra-ui/layout";
 
-import { Menu, MenuItem, MenuButton, MenuList } from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Link, Outlet } from "react-router-dom";
+import React from "react";
+import { Outlet, Link } from "react-router-dom";
+
+import { Menu } from "semantic-ui-react";
+
+const items = [
+  { key: "/", active: true, name: "Home" },
+  { key: "signin", name: "Log In" },
+  { key: "sounds", name: "Text to Speech" },
+];
+
 const Layout = () => {
   return (
     <div>
       <Menu>
-        <MenuButton rightIcon={<ChevronDownIcon />}>Actions</MenuButton>
-        {/* <MenuList> */}
-        <MenuItem href="/">Home</MenuItem>
-        <MenuItem href="/login">Login</MenuItem>
-        <MenuItem href="/register">Register</MenuItem>
-        <MenuItem href="/sounds">Text to Speech</MenuItem>
-        {/* </MenuList> */}
+        <Menu.Item as={Link} name="Home" to="/">
+          Home
+        </Menu.Item>
+        <Menu.Item as={Link} name="login" to="/login">
+          Log In
+        </Menu.Item>
+        <Menu.Item as={Link} name="sounds" to="/sounds">
+          Text to Speech
+        </Menu.Item>
       </Menu>
-
       <Outlet />
     </div>
   );
 };
+
 export default Layout;

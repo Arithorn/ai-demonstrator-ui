@@ -1,111 +1,62 @@
+import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
-  Flex,
-  Heading,
-  Input,
   Button,
-  InputGroup,
-  Stack,
-  InputLeftElement,
-  chakra,
-  Box,
-  Link,
-  Avatar,
-  FormControl,
-  FormHelperText,
-  InputRightElement,
-} from "@chakra-ui/react";
-
-import { AtSignIcon, LockIcon } from "@chakra-ui/icons";
-
+  Form,
+  Grid,
+  Header,
+  Message,
+  Segment,
+} from "semantic-ui-react";
 const RegisterForm = (props) => {
-  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleShowClick = () => setShowPassword(!showPassword);
   return (
-    <Flex
-      flexDirection="column"
-      width="100wh"
-      height="100vh"
-      backgroundColor="gray.200"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Stack
-        flexDir="column"
-        mb="2"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Avatar bg="teal.500" />
-        <Heading color="teal.400">Please Register</Heading>
-        <Box minW={{ base: "90%", md: "468px" }}>
-          <form
-            onSubmit={(event) => props.registerHandler(event, email, password)}
-          >
-            <Stack
-              spacing={4}
-              p="1rem"
-              backgroundColor="whiteAlpha.900"
-              boxShadow="md"
-            >
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    children={<AtSignIcon color="gray.300" />}
-                  />
-                  <Input
-                    type="email"
-                    placeholder="email address"
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </InputGroup>
-              </FormControl>
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    color="gray.300"
-                    children={<LockIcon color="gray.300" />}
-                  />
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? "Hide" : "Show"}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-                {/* <FormHelperText textAlign="right">
-                  <Link>forgot password?</Link>
-                </FormHelperText> */}
-              </FormControl>
-              <Button
-                borderRadius={0}
-                type="submit"
-                variant="solid"
-                colorScheme="teal"
-                width="full"
-              >
-                Register
-              </Button>
-            </Stack>
-          </form>
-        </Box>
-      </Stack>
-      <Box>
-        Already have an account?{" "}
-        <Link color="teal.500" href="/login">
-          Login
-        </Link>
-      </Box>
-    </Flex>
+    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as="h2" color="teal" textAlign="center">
+          {/* <Image src="/logo.png" />  */}
+          Register your account
+        </Header>
+        <Form
+          size="large"
+          onSubmit={async (event) => {
+            const res = await props.loginHandler(event, email, password);
+            setLogin(res.status);
+            if (res.status === true) {
+              setJwt(res.token);
+            }
+          }}
+        >
+          <Segment stacked>
+            <Form.Input
+              fluid
+              icon="user"
+              iconPosition="left"
+              placeholder="E-mail address"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Form.Input
+              fluid
+              icon="lock"
+              iconPosition="left"
+              placeholder="Password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <Button color="teal" fluid size="large">
+              Register
+            </Button>
+          </Segment>
+        </Form>
+        <Message>
+          Already have an account? <Link to="/login">Log In</Link>
+        </Message>
+      </Grid.Column>
+    </Grid>
   );
 };
 
