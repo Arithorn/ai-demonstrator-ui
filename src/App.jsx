@@ -10,6 +10,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Sounds from "./Pages/Sounds";
+import Chat from "./Pages/Chat";
 
 let router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ let router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/sounds", element: <Sounds /> },
+      { path: "/chat", element: <Chat /> },
     ],
   },
 ]);

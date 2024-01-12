@@ -17,12 +17,20 @@ import { loginState, jwtState } from "../State/state";
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const setLogin = useSetRecoilState(loginState);
   const login = useRecoilValue(loginState);
   const setJwt = useSetRecoilState(jwtState);
+  const renderMessage = (msg) => {
+    if (msg === "") {
+      return <div></div>;
+    } else {
+      return <Message>{msg}</Message>;
+    }
+  };
   if (login) {
     return <Navigate replace to="/" />;
-  } else
+  } else {
     return (
       <Grid
         textAlign="center"
@@ -31,9 +39,9 @@ const LoginForm = (props) => {
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" color="teal" textAlign="center">
-            {/* <Image src="/logo.png" />  */}
             Log-in to your account
           </Header>
+          {renderMessage(message)}
           <Form
             size="large"
             onSubmit={async (event) => {
@@ -41,6 +49,8 @@ const LoginForm = (props) => {
               setLogin(res.status);
               if (res.status === true) {
                 setJwt(res.token);
+              } else {
+                setMessage(res.message);
               }
             }}
           >
@@ -72,6 +82,6 @@ const LoginForm = (props) => {
         </Grid.Column>
       </Grid>
     );
+  }
 };
-
 export default LoginForm;

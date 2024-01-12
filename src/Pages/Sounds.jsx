@@ -32,7 +32,7 @@ const Sounds = () => {
     <div>
       Welcome To The Sound Page
       <TTSForm TTSHandler={HandleTTS} updateFunction={loadData} />
-      <ListSounds items={ttslist} />
+      <ListSounds items={ttslist} updateFunction={loadData} />
     </div>
   );
 };

@@ -24,6 +24,9 @@ const Layout = () => {
         <Menu.Item as={Link} name="sounds" to="/sounds">
           Text to Speech
         </Menu.Item>
+        <Menu.Item as={Link} name="chat" to="/chat">
+          ChatBot
+        </Menu.Item>
       </Menu>
       <Outlet />
     </div>

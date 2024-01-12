@@ -11,7 +11,9 @@ const ListSounds = (props) => {
   if (login !== true) {
     return <Navigate replace to="/login" />;
   }
-  const listItems = props.items.map((sound) => <PlayButton sound={sound} />);
+  const listItems = props.items.map((sound) => (
+    <PlayButton sound={sound} updateFunction={props.updateFunction} />
+  ));
   return (
     <div>
       <Table celled striped padded>
@@ -22,6 +24,9 @@ const ListSounds = (props) => {
             </Table.HeaderCell>
             <Table.HeaderCell>
               <Header>Play</Header>
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              <Header>Delete</Header>
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
