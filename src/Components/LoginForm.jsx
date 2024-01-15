@@ -13,21 +13,15 @@ import {
 } from "semantic-ui-react";
 
 import { loginState, jwtState } from "../State/state";
+import StatusMessage from "./StatusMessage";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
   const setLogin = useSetRecoilState(loginState);
   const login = useRecoilValue(loginState);
   const setJwt = useSetRecoilState(jwtState);
-  const renderMessage = (msg) => {
-    if (msg === "") {
-      return <div></div>;
-    } else {
-      return <Message>{msg}</Message>;
-    }
-  };
   if (login) {
     return <Navigate replace to="/" />;
   } else {
@@ -41,7 +35,7 @@ const LoginForm = (props) => {
           <Header as="h2" color="teal" textAlign="center">
             Log-in to your account
           </Header>
-          {renderMessage(message)}
+          <StatusMessage msg={statusMessage} />
           <Form
             size="large"
             onSubmit={async (event) => {
@@ -50,7 +44,7 @@ const LoginForm = (props) => {
               if (res.status === true) {
                 setJwt(res.token);
               } else {
-                setMessage(res.message);
+                setStatusMessage(res.message);
               }
             }}
           >

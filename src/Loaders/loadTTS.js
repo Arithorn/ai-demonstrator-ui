@@ -1,9 +1,7 @@
 import axios from "axios";
 import config from "../config";
 const loadTTS = async (data) => {
-  console.log(data);
   const { token } = data;
-  console.log(token);
   const axiosConfig = {
     headers: {
       "Content-Type": "application/json",

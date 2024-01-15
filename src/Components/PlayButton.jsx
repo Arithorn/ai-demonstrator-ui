@@ -11,7 +11,6 @@ const PlayButton = (props) => {
   const src = `${config.url}/mp3/${fname}`;
   const player = useRef();
   const audiofunction = () => {
-    console.log(player);
     player.current.audioEl.current.play();
   };
   const token = useRecoilValue(jwtState);
@@ -28,9 +27,8 @@ const PlayButton = (props) => {
         <Button
           onClick={async (e) => {
             const data = { token, fname };
-            console.log(data);
-            await DeleteTTS(data);
-            props.updateFunction();
+            const res = await DeleteTTS(data);
+            props.updateFunction(res);
           }}
           icon
         >

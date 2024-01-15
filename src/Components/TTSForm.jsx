@@ -1,21 +1,24 @@
 import React from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useRecoilValue, atom, useSetRecoilState } from "recoil";
-import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import {
   Button,
   Form,
+  FormGroup,
   Grid,
-  Header,
-  Message,
   Segment,
+  Dropdown,
 } from "semantic-ui-react";
 
 import { loginState, jwtState } from "../State/state";
+import StatusMessage from "./StatusMessage";
+import { voiceOptions } from "../config";
 
 const TTSForm = (props) => {
   const [message, setMessage] = useState("");
+  const [statusMsg, setStatusMsg] = useState("");
+  const [voice, setVoice] = useState(voiceOptions[0].value);
   const login = useRecoilValue(loginState);
   const token = useRecoilValue(jwtState);
   if (!login) {
@@ -27,29 +30,44 @@ const TTSForm = (props) => {
         style={{ height: "20vh" }}
         verticalAlign="middle"
       >
-        <Grid.Column style={{ maxWidth: 450 }}>
+        <Grid.Column style={{ maxWidth: 950 }}>
+          <StatusMessage msg={statusMsg} />
           <Form
             size="large"
+            fluid
             onSubmit={async (event) => {
-              const res = await props.TTSHandler(event, { message, token });
-              console.log(res);
+              const res = await props.TTSHandler(event, {
+                voice,
+                message,
+                token,
+              });
+              setStatusMsg(res.message);
               props.updateFunction();
-              // if (res.status === true) {
-              //   console.log(res);
-              // }
             }}
           >
             <Segment stacked>
-              <Form.Input
-                fluid
-                icon="user"
-                iconPosition="left"
-                placeholder="Message"
-                onChange={(e) => setMessage(e.target.value)}
-              />
-              <Button color="teal" fluid size="large">
-                Generate
-              </Button>
+              <FormGroup>
+                <Dropdown
+                  defaultValue={voiceOptions[0].value}
+                  selection
+                  options={voiceOptions}
+                  size="small"
+                  compact
+                  onChange={(e, data) => {
+                    console.log(data);
+                    setVoice(data.value);
+                  }}
+                />
+
+                <Form.Input
+                  fluid
+                  placeholder="Message"
+                  onChange={(e) => setMessage(e.target.value)}
+                  width={12}
+                  value={message}
+                />
+                <Button color="teal">Generate</Button>
+              </FormGroup>
             </Segment>
           </Form>
         </Grid.Column>

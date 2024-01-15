@@ -9,5 +9,14 @@ const gptOptions = [
   { key: "GPT4", text: "GPT 4", value: "gpt-4" },
 ];
 
+const voiceOptions = [
+  { key: "alloy", text: "Alloy", value: "alloy" },
+  { key: "echo", text: "Echo", value: "echo" },
+  { key: "fable", text: "Fable", value: "fable" },
+  { key: "onyx", text: "Onyx", value: "onyx" },
+  { key: "nova", text: "Nova", value: "nova" },
+  { key: "shimmer", text: "Shimmer", value: "shimmer" },
+];
+
 export default config;
-export { gptOptions };
+export { gptOptions, voiceOptions };
