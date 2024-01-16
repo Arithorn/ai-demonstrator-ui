@@ -1,36 +1,34 @@
 // import { Link } from "@chakra-ui/layout";
 
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 
 import { Menu } from "semantic-ui-react";
 
 const items = [
   { key: "/", active: true, name: "Home" },
-  { key: "signin", name: "Log In" },
-  { key: "sounds", name: "Text to Speech" },
+  { key: "/login", name: "Log In" },
+  { key: "/sounds", name: "Text to Speech" },
+  { key: "/stream", name: "Streaming Chatbot" },
 ];
 
 const Layout = () => {
+  const location = useLocation();
+  const { hash, pathname, search } = location;
+  const menuItems = items.map((item) => (
+    <Menu.Item
+      key={item.key}
+      as={Link}
+      to={item.key}
+      active={pathname == item.key ? true : false}
+    >
+      {item.name}
+    </Menu.Item>
+  ));
+
   return (
     <div>
-      <Menu>
-        <Menu.Item as={Link} name="Home" to="/">
-          Home
-        </Menu.Item>
-        <Menu.Item as={Link} name="login" to="/login">
-          Log In
-        </Menu.Item>
-        <Menu.Item as={Link} name="sounds" to="/sounds">
-          Text to Speech
-        </Menu.Item>
-        <Menu.Item as={Link} name="chat" to="/chat">
-          ChatBot
-        </Menu.Item>
-        <Menu.Item as={Link} name="stream" to="/stream">
-          Stream
-        </Menu.Item>
-      </Menu>
+      <Menu fixed="top">{menuItems}</Menu>
       <Outlet />
     </div>
   );

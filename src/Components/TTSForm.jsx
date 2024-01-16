@@ -34,7 +34,6 @@ const TTSForm = (props) => {
           <StatusMessage msg={statusMsg} />
           <Form
             size="large"
-            fluid
             onSubmit={async (event) => {
               const res = await props.TTSHandler(event, {
                 voice,

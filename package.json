@@ -17,7 +17,11 @@
     "react-dom": "^18.2.0",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.20.1",
+    "react-scroll-to-bottom": "^4.2.0",
     "recoil": "^0.7.7",
+    "rehype-highlight": "^7.0.0",
+    "remark-code-blocks": "^2.0.1",
+    "remark-code-extra": "^1.0.1",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.5"
   },
