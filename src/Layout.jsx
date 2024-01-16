@@ -27,6 +27,9 @@ const Layout = () => {
         <Menu.Item as={Link} name="chat" to="/chat">
           ChatBot
         </Menu.Item>
+        <Menu.Item as={Link} name="stream" to="/stream">
+          Stream
+        </Menu.Item>
       </Menu>
       <Outlet />
     </div>

@@ -9,4 +9,11 @@ const jwtState = atom({
   default: "",
 });
 
-export { loginState, jwtState };
+const msgsState = atom({
+  key: "msgsState",
+  default: [
+    { role: "system", content: "Please output your answer using markdown." },
+  ],
+});
+
+export { loginState, jwtState, msgsState };

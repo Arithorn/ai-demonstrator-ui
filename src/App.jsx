@@ -11,6 +11,7 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Sounds from "./Pages/Sounds";
 import Chat from "./Pages/Chat";
+import Stream from "./Pages/Stream";
 
 let router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ let router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/sounds", element: <Sounds /> },
       { path: "/chat", element: <Chat /> },
+      { path: "/stream", element: <Stream /> },
     ],
   },
 ]);
