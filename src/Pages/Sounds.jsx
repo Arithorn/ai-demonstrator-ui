@@ -8,7 +8,7 @@ import TTSForm from "../Components/TTSForm";
 import { useRecoilValue } from "recoil";
 
 import { loginState, jwtState } from "../State/state";
-import loadTTS from "../Loaders/loadTTS";
+import { loadTTS } from "../Loaders/loadTTS";
 
 const Sounds = () => {
   const loadData = () => {

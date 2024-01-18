@@ -7,9 +7,10 @@ import { Menu } from "semantic-ui-react";
 
 const items = [
   { key: "/", active: true, name: "Home" },
-  { key: "/login", name: "Log In" },
   { key: "/sounds", name: "Text to Speech" },
   { key: "/stream", name: "Streaming Chatbot" },
+  { key: "/images", name: "Picture Creation" },
+  { key: "/login", name: "Log In" },
 ];
 
 const Layout = () => {

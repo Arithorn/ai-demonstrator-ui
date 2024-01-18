@@ -1,6 +1,6 @@
 import axios from "axios";
 import config from "../config";
-const loadTTS = async (data) => {
+const loadJpg = async (data) => {
   const { token } = data;
   const axiosConfig = {
     headers: {
@@ -8,7 +8,7 @@ const loadTTS = async (data) => {
       authorization: `Bearer ${token}`,
     },
   };
-  let res = await axios.get(`${config.url}/api/mp3`, axiosConfig);
+  let res = await axios.get(`${config.url}/api/jpg`, axiosConfig);
   return res.data.list;
 };
-export { loadTTS };
+export { loadJpg };
