@@ -15,7 +15,12 @@ const ListPictures = (props) => {
   }
 
   const listItems = props.items.map((image) => (
-    <ImageCard src={`${config.url}/jpg/${image.fname}`} prompt={image.prompt} />
+    <ImageCard
+      src={`${config.url}/jpg/${image.fname}`}
+      prompt={image.prompt}
+      fname={image.fname}
+      updateFunction={props.updateFunction}
+    />
   ));
   return (
     <Grid relaxed columns={4}>

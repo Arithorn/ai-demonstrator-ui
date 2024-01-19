@@ -8,7 +8,7 @@ import { useRecoilValue } from "recoil";
 
 import { loginState, jwtState } from "../State/state";
 import { loadJpg } from "../Loaders/loadJpg";
-import { HandleJpg } from "../Handlers/handleJpg";
+import { handleJpg } from "../Handlers/handleJpg";
 import { Container } from "semantic-ui-react";
 
 const Pictures = () => {
@@ -32,7 +32,7 @@ const Pictures = () => {
   return (
     <Container>
       Welcome To The Pictures Page
-      <PictureForm JpgHandler={HandleJpg} updateFunction={loadData} />
+      <PictureForm JpgHandler={handleJpg} updateFunction={loadData} />
       <ListPictures items={jpgList} updateFunction={loadData} />
     </Container>
   );

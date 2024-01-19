@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "../config";
 
-const HandleJpg = async (event, data) => {
+const handleJpg = async (event, data) => {
   event.preventDefault();
   const { prompt, token } = data;
   const axiosConfig = {
@@ -19,7 +19,7 @@ const HandleJpg = async (event, data) => {
   return res.data;
 };
 
-const DeleteJpg = async (data) => {
+const deleteJpg = async (data) => {
   const { fname, token } = data;
   const axiosConfig = {
     headers: {
@@ -33,4 +33,4 @@ const DeleteJpg = async (data) => {
   return res.data;
 };
 
-export { HandleJpg, DeleteJpg };
+export { handleJpg, deleteJpg };
