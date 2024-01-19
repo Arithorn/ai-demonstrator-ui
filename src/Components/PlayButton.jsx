@@ -17,7 +17,7 @@ const PlayButton = (props) => {
   return (
     <Table.Row>
       <ReactAudioPlayer src={src} ref={player} />
-      <Table.Cell singleLine>{message.substring(0, 40)}</Table.Cell>
+      <Table.Cell singleLine>{message.substring(0, 90)}</Table.Cell>
       <Table.Cell>
         <Button onClick={audiofunction} icon>
           <Icon name="play"></Icon>
@@ -32,7 +32,7 @@ const PlayButton = (props) => {
           }}
           icon
         >
-          <Icon name="user"></Icon>
+          <Icon name="delete"></Icon>
         </Button>
       </Table.Cell>
     </Table.Row>
