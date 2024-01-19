@@ -1,0 +1,57 @@
+name: Build Vite React App
+
+# When to run the workflow
+on:
+  # Trigger on push to any branch, you can specify only main if required
+  push:
+    branches:
+      - "**"
+  # And on pull requests to any branch, you can specify only main if required
+  pull_request:
+    branches:
+      - "**"
+
+# The jobs to run
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Sets up a Node.js environment to run your build scripts
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 21' # Use the Node.js version that matches your development environment
+
+      # Caches Node.js modules
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          # This path is unique to Yarn, but you can change it to `node_modules` if using npm by removing `~/.yarn`
+          path: |
+            ~/.yarn
+            .yarn/cache
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      # Build the Vite React app
+      - name: Build
+        run: yarn build
+
+      # This step is optional: Archive production artifacts
+      - name: Archive production artifacts
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: built-app
+          path: dist/ # or the build directory specified in your vite.config.js
