@@ -20,17 +20,17 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Sets up a Node.js environment to run your build scripts
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: 21' # Use the Node.js version that matches your development environment
 
       # Caches Node.js modules
       - name: Cache Node.js modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           # This path is unique to Yarn, but you can change it to `node_modules` if using npm by removing `~/.yarn`
           path: |
