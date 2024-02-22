@@ -13,6 +13,7 @@ import Sounds from "./Pages/Sounds";
 import Chat from "./Pages/Chat";
 import Stream from "./Pages/Stream";
 import Pictures from "./Pages/Pictures";
+import { CodeReview } from "./Pages/CodeReview";
 
 let router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ let router = createBrowserRouter([
       { path: "/chat", element: <Chat /> },
       { path: "/stream", element: <Stream /> },
       { path: "/images", element: <Pictures /> },
+      { path: "/codereview", element: <CodeReview /> },
     ],
   },
 ]);

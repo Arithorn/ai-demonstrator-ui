@@ -3,13 +3,14 @@
 import React from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
 
-import { Menu } from "semantic-ui-react";
+import { Divider, Menu } from "semantic-ui-react";
 
 const items = [
   { key: "/", active: true, name: "Home" },
   { key: "/sounds", name: "Text to Speech" },
   { key: "/stream", name: "Streaming Chatbot" },
   { key: "/images", name: "Picture Creation" },
+  { key: "/codereview", name: "Code Review" },
   { key: "/login", name: "Log In" },
 ];
 
@@ -30,6 +31,9 @@ const Layout = () => {
   return (
     <div>
       <Menu fixed="top">{menuItems}</Menu>
+      <Divider hidden />
+      <Divider hidden />
+      <Divider hidden />
       <Outlet />
     </div>
   );
