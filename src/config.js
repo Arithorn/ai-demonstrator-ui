@@ -1,5 +1,5 @@
 const config = {
-  url: "http://mc.manbatcave.com:3001",
+  url: "http://demo.ts-disc-demo.discovery.cloud",
 };
 
 const gptOptions = [
