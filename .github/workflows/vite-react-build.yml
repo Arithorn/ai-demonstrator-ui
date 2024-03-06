@@ -56,7 +56,19 @@ jobs:
         with:
           name: built-app
           path: release.zip
-      - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm install -g semantic-release@19 @semantic-release/git
+          semantic-release --branches main --update-release-notes
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: release.zip
+          upload_url: ${{ steps.semantic.outputs.release_upload_url }}
+          asset_path: release.zip
+          asset_name: release.zip
+          asset_content_type: application/zip
