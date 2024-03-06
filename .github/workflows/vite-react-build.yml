@@ -5,11 +5,11 @@ on:
   # Trigger on push to any branch, you can specify only main if required
   push:
     branches:
-      - "**"
+      - "main"
   # And on pull requests to any branch, you can specify only main if required
   pull_request:
     branches:
-      - "**"
+      - "main"
 
 # The jobs to run
 jobs:
@@ -63,6 +63,7 @@ jobs:
       #     npm install -g semantic-release@19 @semantic-release/git
       #     semantic-release --branches main --update-release-notes
       - name: Release
+        id: semantic
         uses: cycjimmy/semantic-release-action@v3
         with:
           semantic_version: 18.0.0
