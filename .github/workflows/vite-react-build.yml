@@ -47,11 +47,16 @@ jobs:
       # Build the Vite React app
       - name: Build
         run: yarn build
-
+      - name: Create release archive
+        run: zip -r release.zip dist
       # This step is optional: Archive production artifacts
       - name: Archive production artifacts
         if: success()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: built-app
-          path: dist/ # or the build directory specified in your vite.config.js
+          path: release.zip
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release.zip
