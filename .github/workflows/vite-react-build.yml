@@ -4,12 +4,10 @@ name: Build Vite React App
 on:
   # Trigger on push to any branch, you can specify only main if required
   push:
-    branches:
-      - "main"
+    branches: [main]
   # And on pull requests to any branch, you can specify only main if required
   pull_request:
-    branches:
-      - "main"
+    branches: [main]
 
 # The jobs to run
 jobs:
