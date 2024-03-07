@@ -54,35 +54,10 @@ jobs:
         with:
           name: built-app
           path: release.zip
-      # - name: Semantic Release
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      #   run: |
-      #     npm install -g semantic-release@19 @semantic-release/git
-      #     semantic-release --branches main --update-release-notes
-      # - name: Release
-      #   id: semantic
-      #   uses: cycjimmy/semantic-release-action@v3
-      #   with:
-      #     semantic_version: 18.0.0
-      #     extra_plugins: |
-      #       @semantic-release/changelog@6.0.0
-      #       @semantic-release/git@10.0.0
-      #       conventional-changelog-conventionalcommits@4.6.3
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
-      # - name: Upload release asset
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.semantic.outputs.release_upload_url }}
-      #     asset_path: release.zip
-      #     asset_name: release.zip
-      #     asset_content_type: application/zip
       - name: Release
         uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: release.zip
