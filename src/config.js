@@ -1,5 +1,5 @@
 const config = {
-  url: "http://demo.ts-disc-demo.discovery.cloud",
+  url: "https://demo.ts-disc-demo.discovery.cloud",
 };
 
 const gptOptions = [
