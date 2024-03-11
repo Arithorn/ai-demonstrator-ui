@@ -1,5 +1,5 @@
 const config = {
-  url: "https://demo.ts-disc-demo.discovery.cloud",
+  url: import.meta.env.VITE_BE_URL,
 };
 
 const gptOptions = [
