@@ -19,7 +19,7 @@ const gptOptions = [
   {
     key: "Claude3Haiku",
     text: "Claude 3 Haiku",
-    value: "claude-3-haiku-20240229",
+    value: "claude-3-haiku-20240307",
   },
 ];
 
