@@ -5,13 +5,14 @@ const handleStream = async (event, data) => {
   const {
     updateStream,
     model,
-    getMessages,
+
     promptMessage,
     updateMessages,
     token,
   } = data;
-  let messages = getMessages();
-  console.log(`PromptMsg=${promptMessage.content}`);
+  // let messages = getMessages();
+  let messages = data.messages;
+  // console.log(`PromptMsg=${promptMessage.content}`);
   updateMessages((messages) => [...messages, promptMessage]);
   // messages = getMessages();
   const prompt = [...messages, promptMessage];
