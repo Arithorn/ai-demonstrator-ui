@@ -1,5 +1,7 @@
 const config = {
   url: import.meta.env.VITE_BE_URL,
+  systemPrompt:
+    "Output all your answers in markdown.If you don't use markdown you will be penalized. Specify the programming language next to the backticks when creating code blocks.",
 };
 
 const gptOptions = [
