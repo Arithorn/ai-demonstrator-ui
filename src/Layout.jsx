@@ -10,7 +10,7 @@ const items = [
   { key: "/sounds", name: "Text to Speech" },
   { key: "/stream", name: "Streaming Chatbot" },
   { key: "/images", name: "Picture Creation" },
-  { key: "/codereview", name: "Code Review" },
+  { key: "/pullrequest", name: "Pull Request Review" },
   { key: "/login", name: "Log In" },
 ];
 

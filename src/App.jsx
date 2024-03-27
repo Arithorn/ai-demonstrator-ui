@@ -14,6 +14,7 @@ import Chat from "./Pages/Chat";
 import Stream from "./Pages/Stream";
 import Pictures from "./Pages/Pictures";
 import { CodeReview } from "./Pages/CodeReview";
+import PullRequest from "./Pages/PullRequest";
 
 let router = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ let router = createBrowserRouter([
       { path: "/chat", element: <Chat /> },
       { path: "/stream", element: <Stream /> },
       { path: "/images", element: <Pictures /> },
-      { path: "/codereview", element: <CodeReview /> },
+      { path: "/pullrequest", element: <PullRequest /> },
     ],
   },
 ]);
