@@ -2,14 +2,8 @@ import axios from "axios";
 import config from "../config";
 
 const handleStream = async (event, data) => {
-  const {
-    updateStream,
-    model,
+  const { updateStream, model, promptMessage, updateMessages, token } = data;
 
-    promptMessage,
-    updateMessages,
-    token,
-  } = data;
   // let messages = getMessages();
   let messages = data.messages;
   // console.log(`PromptMsg=${promptMessage.content}`);
