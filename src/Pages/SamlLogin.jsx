@@ -1,7 +1,8 @@
+import config from "../config";
 const SamlLogin = () => {
   const handleLogin = () => {
     //Redirect to SAML Login
-    window.location.href = "https://mc.manbatcave.com:5173/auth/saml";
+    window.location.href = `${config.url}/auth/saml`;
   };
   return (
     <div>

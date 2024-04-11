@@ -5,6 +5,7 @@ import { Button, Icon, Tab, Table } from "semantic-ui-react";
 import config from "../config";
 import { DeleteTTS } from "../Handlers/handleTTS";
 import { loginState, jwtState } from "../State/state";
+import { handleLogin } from "../Handlers/handleLogin";
 
 const PlayButton = (props) => {
   const { fname, message } = props.sound;
@@ -13,17 +14,18 @@ const PlayButton = (props) => {
   const audiofunction = () => {
     player.current.audioEl.current.play();
   };
-  const token = useRecoilValue(jwtState);
+  const { token } = handleLogin("/tts");
   return (
     <Table.Row>
-      <ReactAudioPlayer src={src} ref={player} />
       <Table.Cell singleLine>{message.substring(0, 90)}</Table.Cell>
       <Table.Cell>
         <Button onClick={audiofunction} icon>
           <Icon name="play"></Icon>
         </Button>
       </Table.Cell>
+
       <Table.Cell>
+        <ReactAudioPlayer src={src} ref={player} />
         <Button
           onClick={async (e) => {
             const data = { token, fname };

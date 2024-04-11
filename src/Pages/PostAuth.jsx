@@ -6,7 +6,7 @@ const PostAuth = () => {
     localStorage.setItem("token", token);
     return <Navigate replace to="/" />;
   }
-  return <Navigate replace to="/login2" />;
+  return <Navigate replace to="/login" />;
 };
 
 export default PostAuth;

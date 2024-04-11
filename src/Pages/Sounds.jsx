@@ -5,12 +5,11 @@ import { Navigate } from "react-router-dom";
 import ListSounds from "../Components/ListSounds";
 import HandleTTS from "../Handlers/handleTTS";
 import TTSForm from "../Components/TTSForm";
-import { useRecoilValue } from "recoil";
-
-import { loginState, jwtState } from "../State/state";
 import { loadTTS } from "../Loaders/loadTTS";
+import { handleLogin } from "../Handlers/handleLogin";
 
 const Sounds = () => {
+  handleLogin("/sounds");
   const loadData = () => {
     const data = { token };
     loadTTS(data).then((response) => {
@@ -18,13 +17,12 @@ const Sounds = () => {
       setTTSList(response);
     });
   };
-  const token = useRecoilValue(jwtState);
-  const login = useRecoilValue(loginState);
+  const { isLoggedIn, token } = handleLogin("/sounds");
   const [ttslist, setTTSList] = useState([]);
   useEffect(() => {
     loadData();
   }, []);
-  if (login !== true) {
+  if (!isLoggedIn === true) {
     return <Navigate replace to="/login" />;
   }
 

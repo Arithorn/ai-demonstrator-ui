@@ -4,15 +4,19 @@ import { Header, Table } from "semantic-ui-react";
 
 import { loginState, jwtState } from "../State/state";
 import { PlayButton } from "./PlayButton";
+import { handleLogin } from "../Handlers/handleLogin";
 
 const ListSounds = (props) => {
-  const token = useRecoilValue(jwtState);
-  const login = useRecoilValue(loginState);
-  if (login !== true) {
+  const { token, isLoggedIn } = handleLogin("/tts");
+  if (!isLoggedIn) {
     return <Navigate replace to="/login" />;
   }
-  const listItems = props.items.map((sound) => (
-    <PlayButton sound={sound} updateFunction={props.updateFunction} />
+  const listItems = props.items.map((sound, index) => (
+    <PlayButton
+      sound={sound}
+      updateFunction={props.updateFunction}
+      key={index}
+    />
   ));
   return (
     <div>

@@ -10,19 +10,18 @@ import {
   Segment,
   Dropdown,
 } from "semantic-ui-react"; // Changed FormButton to Button for consistency
-import { loginState, jwtState, msgsState } from "../State/state";
+import { handleLogin } from "../Handlers/handleLogin";
+import { msgsState } from "../State/state";
 import { gptOptions } from "../config";
 
 const StreamForm = ({ StreamHandler, updateStream, updateMessages }) => {
   const [message, setMessage] = useState("");
   const [model, setModel] = useState(gptOptions[0].value);
   const [error, setError] = useState(null);
-
-  const login = useRecoilValue(loginState);
-  const token = useRecoilValue(jwtState);
+  const { isLoggedIn, token } = handleLogin("/stream");
   const messages = useRecoilValue(msgsState);
   const setMessagesState = useSetRecoilState(msgsState);
-  if (!login) {
+  if (!isLoggedIn) {
     return <Navigate replace to="/login" />;
   }
 
@@ -83,7 +82,6 @@ const StreamForm = ({ StreamHandler, updateStream, updateMessages }) => {
                 onChange={handleModelChange}
               />
               <TextArea
-      
                 placeholder="Prompt"
                 onChange={handleMessageChange}
                 onKeyDown={handleKeyDown}

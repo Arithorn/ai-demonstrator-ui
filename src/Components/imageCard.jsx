@@ -1,6 +1,4 @@
 import {
-  CardMeta,
-  CardHeader,
   CardDescription,
   CardContent,
   Card,
@@ -9,13 +7,12 @@ import {
   GridColumn,
   Button,
 } from "semantic-ui-react";
-import { useRecoilValue } from "recoil";
-import { jwtState } from "../State/state";
 import { deleteJpg } from "../Handlers/handleJpg";
+import { handleLogin } from "../Handlers/handleLogin";
 
 const ImageCard = (props) => {
   const { src, prompt, fname } = props;
-  const token = useRecoilValue(jwtState);
+  const { token } = handleLogin("/images");
   return (
     <GridColumn>
       <Card>

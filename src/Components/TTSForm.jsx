@@ -13,18 +13,17 @@ import {
   Loader,
 } from "semantic-ui-react";
 
-import { loginState, jwtState } from "../State/state";
 import StatusMessage from "./StatusMessage";
 import { voiceOptions } from "../config";
+import { handleLogin } from "../Handlers/handleLogin";
 
 const TTSForm = (props) => {
   const [message, setMessage] = useState("");
   const [statusMsg, setStatusMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [voice, setVoice] = useState(voiceOptions[0].value);
-  const login = useRecoilValue(loginState);
-  const token = useRecoilValue(jwtState);
-  if (!login) {
+  const { token, isLoggedIn } = handleLogin("/tts");
+  if (!isLoggedIn) {
     return <Navigate replace to="/login" />;
   } else
     return (
