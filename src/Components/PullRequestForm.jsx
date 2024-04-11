@@ -15,8 +15,9 @@ import {
   FormField,
   LabelDetail,
 } from "semantic-ui-react"; // Changed FormButton to Button for consistency
-import { loginState, jwtState, msgsState } from "../State/state";
+import { msgsState } from "../State/state";
 import { gptOptions } from "../config";
+import { handleLogin } from "../Handlers/handleLogin";
 
 const PullRequestForm = ({ StreamHandler, updateStream, updateMessages }) => {
   const [repo, setRepoName] = useState("");
@@ -24,10 +25,9 @@ const PullRequestForm = ({ StreamHandler, updateStream, updateMessages }) => {
   const [model, setModel] = useState(gptOptions[0].value);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false); // Added isLoading state to manage loading state
-  const login = useRecoilValue(loginState);
-  const token = useRecoilValue(jwtState);
   const setMessagesState = useSetRecoilState(msgsState);
-  if (!login) {
+  const { isLoggedIn, token } = handleLogin("/pullrequest");
+  if (!isLoggedIn) {
     return <Navigate replace to="/login" />;
   }
 
@@ -57,10 +57,6 @@ const PullRequestForm = ({ StreamHandler, updateStream, updateMessages }) => {
     setPrNumber(e.target.value);
   }, []);
 
-  // const handleModelChange = (e, data) => {
-  //   setModel(data.value);
-  // };
-
   return (
     <Grid textAlign="center" style={{ height: "15vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 800 }}>
@@ -72,13 +68,6 @@ const PullRequestForm = ({ StreamHandler, updateStream, updateMessages }) => {
             </Dimmer>
 
             <FormGroup>
-              {/* <Dropdown
-                defaultValue={gptOptions[0].value}
-                selection
-                options={gptOptions}
-                size="small"
-                onChange={handleModelChange}
-              /> */}
               <FormField inline>
                 <Label pointing="right" color="teal">
                   Review Model:<LabelDetail>{model}</LabelDetail>

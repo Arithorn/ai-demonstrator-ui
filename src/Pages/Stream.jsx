@@ -6,8 +6,10 @@ import { StreamMessage } from "../Components/StreamMessage";
 import { handleStream } from "../Handlers/handleStream";
 import { msgsState } from "../State/state";
 import config from "../config";
+import { handleLogin } from "../Handlers/handleLogin";
 
 const Stream = () => {
+  const { isLoggedIn, token } = handleLogin("/stream");
   const resetChat = () => {
     setMessages([
       {

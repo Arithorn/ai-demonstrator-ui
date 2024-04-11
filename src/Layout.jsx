@@ -4,6 +4,7 @@ import React from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
 
 import { Divider, Menu } from "semantic-ui-react";
+import { handleLogin } from "./Handlers/handleLogin";
 
 const items = [
   { key: "/", active: true, name: "Home" },
@@ -11,11 +12,11 @@ const items = [
   { key: "/stream", name: "Streaming Chatbot" },
   { key: "/images", name: "Picture Creation" },
   { key: "/pullrequest", name: "Pull Request Review" },
-  { key: "/login", name: "Log In" },
 ];
 
 const Layout = () => {
   const location = useLocation();
+  const { isLoggedIn } = handleLogin("");
   const { hash, pathname, search } = location;
   const menuItems = items.map((item) => (
     <Menu.Item
@@ -27,7 +28,17 @@ const Layout = () => {
       {item.name}
     </Menu.Item>
   ));
-
+  menuItems.push(
+    <Menu.Item
+      position="right"
+      key="saml"
+      as={Link}
+      to="/login"
+      active={pathname == "/login" ? true : false}
+    >
+      {isLoggedIn ? "Log Out" : "Log In"}
+    </Menu.Item>
+  );
   return (
     <div>
       <Menu fixed="top">{menuItems}</Menu>

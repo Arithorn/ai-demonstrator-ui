@@ -1,13 +1,8 @@
-import axios from "axios";
-
-import config from "../config";
-const HandleLogin = async (event, email, password) => {
-  event.preventDefault();
-  let res = await axios.post(`${config.url}/login`, {
-    email,
-    password,
-  });
-  const data = res.data;
-  return data;
+const handleLogin = (returnUrl) => {
+  const token = localStorage.getItem("token");
+  if (token !== null) {
+    return { isLoggedIn: true, token };
+  }
+  return { isLoggedIn: false, token: null };
 };
-export default HandleLogin;
+export { handleLogin };

@@ -2,27 +2,15 @@ import axios from "axios";
 import config from "../config";
 
 const handleStream = async (event, data) => {
-  const {
-    updateStream,
-    model,
+  const { updateStream, model, promptMessage, updateMessages, token } = data;
 
-    promptMessage,
-    updateMessages,
-    token,
-  } = data;
-  // let messages = getMessages();
   let messages = data.messages;
-  // console.log(`PromptMsg=${promptMessage.content}`);
+
   updateMessages((messages) => [...messages, promptMessage]);
-  // messages = getMessages();
+
   const prompt = [...messages, promptMessage];
 
   let answer = "";
-  // messages.map((msg, index) =>
-  //   console.log(`messages = ${index}-${msg.content}`)
-  // );
-  // prompt.map((msg, index) => console.log(`prompt = ${index}-${msg.content}`));
-
   const response = await fetch(`${config.url}/api/stream`, {
     method: "post",
     headers: {
